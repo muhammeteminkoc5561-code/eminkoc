@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Muhammet Emin Koç — DevOps & Altyapı Stajyer Adayı</title>
+    <meta name="description" content="Akdeniz Üniversitesi YBS öğrencisi. Linux, Docker, Kubernetes ve bulut altyapı otomasyonu odaklı portfolyo.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        termbg: '#080808',
+                        panelbg: '#0f0f11',
+                        bordercol: '#27272a',
+                        amber: '#f59e0b',
+                        amberdim: '#d97706',
+                        textmain: '#e4e4e7',
+                        textmuted: '#a1a1aa'
+                    },
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'JetBrains Mono', monospace; background-color: #080808; color: #e4e4e7; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 2px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
+        .glow-text { text-shadow: 0 0 10px rgba(245, 158, 11, 0.2); }
+        @media (prefers-reduced-motion: reduce) {
+            .blink { animation: none; }
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .blink { animation: blink 1s infinite; }
+    </style>
+</head>
+<body class="min-h-screen p-2 md:p-6 selection:bg-[#f59e0b] selection:text-black">
+
+    <!-- Ana Terminal Pencere Çerçevesi -->
+    <div class="max-w-6xl mx-auto bg-panelbg border border-bordercol rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.8)] ring-1 ring-white/5 overflow-hidden flex flex-col min-h-[92vh]">
+        
+        <!-- Terminal Üst Başlık -->
+        <div class="bg-[#121215] border-b border-bordercol px-4 py-2.5 flex items-center justify-between select-none">
+            <div class="flex items-center space-x-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                <span class="text-xs text-textmuted ml-4 hidden sm:inline">bash — emin@mek-node: ~</span>
+            </div>
+            <div class="flex items-center space-x-4 text-xs font-mono">
+                <span id="status-badge" class="text-amber">● ALTYAPI & DEVOPS STAJYER ADAYI</span>
+                <!-- Dil Değiştirme Butonu -->
+                <button onclick="toggleLanguage()" class="bg-panelbg hover:bg-bordercol border border-bordercol text-amber px-2.5 py-1 rounded transition cursor-pointer font-bold">
+                    [ <span id="lang-indicator">EN</span> ]
+                </button>
+            </div>
+        </div>
+
+        <!-- Terminal İçerik Alanı -->
+        <div class="p-4 md:p-8 space-y-8 flex-1 overflow-y-auto text-sm">
+
+            <!-- Sistem Durumu / Hızlı Komut -->
+            <div class="space-y-1">
+                <div class="flex items-center space-x-2 text-textmuted text-xs">
+                    <span class="text-amber">emin@mek-node:~#</span>
+                    <span>uptime</span>
+                </div>
+                <div id="uptime-text" class="text-xs text-textmuted pl-4">
+                     Akdeniz Üniversitesi YBS | Staj Dönemi: Dönem İçi / Zorunlu (Hafta İçi Uygun)
+                </div>
+            </div>
+
+            <!-- Üst Bölüm: İsim, Hiyerarşi ve Net Özet -->
+            <div class="border border-bordercol bg-termbg p-6 rounded space-y-4">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-bordercol pb-4">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white tracking-wide">Muhammet Emin Koç</h1>
+                        <p id="hero-subtitle" class="text-xs text-amber mt-1">// Yönetim Bilişim Sistemleri Öğrencisi & DevOps / Altyapı Stajyer Adayı</p>
+                    </div>
+                    <!-- İletişim Butonu -->
+                    <div>
+                        <a href="mailto:muhammeteminkoc5561@gmail.com" class="bg-panelbg hover:bg-bordercol border border-bordercol text-textmain px-4 py-2 rounded text-xs font-mono transition inline-flex items-center space-x-1.5">
+                            <svg class="w-3.5 h-3.5 fill-current text-amber" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <span id="btn-email">[E-posta Gönder]</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center pt-2">
+                    <div class="lg:col-span-5 font-mono text-amber text-[11px] leading-tight select-none overflow-x-auto whitespace-pre">
+<pre class="glow-text">
+  ███╗   ███╗███████╗██╗  ██╗
+  ████╗ ████║██╔════╝██║ ██╔╝
+  ██╔████╔██║█████╗  █████╔╝ 
+  ██║╚██╔╝██║██╔══╝  ██╔═██╗ 
+  ██║ ╚═╝ ██║███████╗██║  ██╗
+  ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
+</pre>
+                    </div>
+                    <div class="lg:col-span-7 space-y-2 border-t lg:border-t-0 lg:border-l border-bordercol pt-4 lg:pt-0 lg:pl-6 text-xs text-textmuted leading-relaxed">
+                        <p id="hero-desc">
+                            Antalya'da ikamet eden; İstanbul ve Antalya başta olmak üzere farklı şehirlerdeki dönem içi/zorunlu staj fırsatlarını değerlendiren YBS öğrencisiyim. Linux, konteyner teknolojileri (Docker/Kubernetes) ve CI/CD otomasyon süreçlerinde pratik projelere sahibim.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2 font-mono">
+                            <span id="location-badge" class="bg-panelbg border border-bordercol px-2.5 py-1 text-amber">ANTALYA / İSTANBUL (FARKLI ŞEHİRLERE UYGUN)</span>
+                            <span class="bg-panelbg border border-bordercol px-2.5 py-1 text-textmuted">muhammeteminkoc5561@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bölüm: Hakkımda -->
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-xs text-amber">
+                    <span class="prompt-user">emin@mek-node:~#</span>
+                    <span id="cmd-about">cat /etc/motd</span>
+                </div>
+                <div id="about-text" class="bg-termbg border border-bordercol p-4 rounded text-xs leading-relaxed text-textmain">
+                    Altyapı ve DevOps alanında kariyer hedefliyorum. IT Laboratuvar Operasyon Destek Görevlisi olarak fakülte altyapısının sürekliliğini yönetirken; Linux Derneği kampları (Yaz/Kış) ve Oracle Cloud üzerinde kurduğum otomasyon projeleriyle teknik becerilerimi pekiştirdim. AkdeMIS Başkan Yardımcılığı ile operasyonel ve yönetsel yetkinlik kazandım.
+                </div>
+            </div>
+
+            <!-- Bölüm: Deneyim & Liderlik -->
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-xs text-amber">
+                    <span class="prompt-user">emin@mek-node:~#</span>
+                    <span id="cmd-exp">history --work-experience</span>
+                </div>
+                <h2 class="sr-only">Deneyim ve Liderlik</h2>
+                <div class="space-y-2">
+                    <div class="bg-termbg border border-bordercol p-4 rounded space-y-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs">
+                            <span class="text-amber font-bold" id="exp-1-title">IT Laboratuvar Operasyon Destek Görevlisi</span>
+                            <span class="text-textmuted">01.11.2025 — 15.05.2026</span>
+                        </div>
+                        <div class="text-xs text-textmuted">Akdeniz Üniversitesi — Uygulamalı Bilimler Fakültesi (İŞKUR Gençlik Programı İstihdamı)</div>
+                        <p id="exp-1-desc" class="text-xs text-textmain pt-1">Fakülte laboratuvar altyapısı, ağ optimizasyonu, donanım/yazılım yapılandırmaları ve kesintisiz teknik destek yönetimi.</p>
+                    </div>
+                    <div class="bg-termbg border border-bordercol p-4 rounded space-y-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs">
+                            <span class="text-amber font-bold" id="exp-2-title">Başkan Yardımcısı & Kurumsal İletişim Koordinatörü (Eski)</span>
+                            <span class="text-textmuted">19.10.2024 — 01.04.2026</span>
+                        </div>
+                        <div class="text-xs text-textmuted">AkdeMIS Öğrenci Topluluğu</div>
+                        <p id="exp-2-desc" class="text-xs text-textmain pt-1">Teknoyön Zirvesi koordinasyonu, stratejik paydaş ilişkileri ve kurumsal ortaklık yönetimi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bölüm: Projeler & Altyapı -->
+            <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-xs text-amber">
+                    <span class="prompt-user">emin@mek-node:~#</span>
+                    <span id="cmd-proj">git status --projects</span>
+                </div>
+                <h2 class="sr-only">Projeler</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-termbg border border-bordercol p-4 rounded flex flex-col justify-between space-y-3">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-textmuted">
+                                <span class="text-amber font-bold">cloud-lab-autodeploy</span>
+                                <span>28.03.2026</span>
+                            </div>
+                            <p id="proj-1-desc" class="text-textmain">Oracle Cloud altyapısında Nginx için GitHub Actions ve Docker ile otonom CI/CD dağıtım hattı (~4 dk → ~30 sn deploy süresi).</p>
+                            <div class="flex flex-wrap gap-1 pt-1 font-mono text-[10px]">
+                                <span class="bg-panelbg border border-bordercol px-2 py-0.5 text-textmuted">Docker</span>
+                                <span class="bg-panelbg border border-bordercol px-2 py-0.5 text-textmuted">GitHub Actions</span>
+                                <span class="bg-panelbg border border-bordercol px-2 py-0.5 text-textmuted">Oracle Cloud</span>
+                            </div>
+                        </div>
+                        <a href="https://github.com/muhammeteminkoc5561-code/cloud-lab-autodeploy" target="_blank" rel="noopener noreferrer" class="text-amber hover:underline inline-flex items-center space-x-1">
+                            <span class="proj-link-text">[görüntüle]</span>
+                        </a>
+                    </div>
+                    <div class="bg-termbg border border-bordercol p-4 rounded flex flex-col justify-between space-y-3">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-textmuted">
+                                <span class="text-amber font-bold">docker-web-projesi</span>
+                                <span>25.04.2026</span>
+                            </div>
+                            <p id="proj-2-desc" class="text-textmain">Deployment, Service, Ingress ve ConfigMap bileşenleriyle Kubernetes mikroservis yönetimi ve yük dengeleme.</p>
+                            <div class="flex flex-wrap gap-1 pt-1 font-mono text-[10px]">
+                                <span class="bg-panelbg border border-bordercol px-2 py-0.5 text-textmuted">Kubernetes</span>
+                                <span class="bg-panelbg border border-bordercol px-2 py-0.5 text-textmuted">Docker</span>
+                                <span class="bg-panelbg border border-bordercol px-2 py-0.5 text-textmuted">Microservices</span>
+                            </div>
+                        </div>
+                        <a href="https://github.com/muhammeteminkoc5561-code/docker-web-projesi" target="_blank" rel="noopener noreferrer" class="text-amber hover:underline inline-flex items-center space-x-1">
+                            <span class="proj-link-text">[görüntüle]</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bölüm: Yetkinlikler & Kamp/Sertifikalar -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="bg-termbg border border-bordercol p-4 rounded space-y-2">
+                    <div class="text-amber font-bold" id="stack-title">// CORE_STACK</div>
+                    <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[11px]">
+                        <span class="bg-panelbg border border-bordercol px-2 py-1 text-textmain">Linux (CLI/SSH)</span>
+                        <span class="bg-panelbg border border-bordercol px-2 py-1 text-textmain">Docker</span>
+                        <span class="bg-panelbg border border-bordercol px-2 py-1 text-textmain">Kubernetes</span>
+                        <span class="bg-panelbg border border-bordercol px-2 py-1 text-textmain">GitHub Actions</span>
+                        <span class="bg-panelbg border border-bordercol px-2 py-1 text-textmain">Python</span>
+                        <span class="bg-panelbg border border-bordercol px-2 py-1 text-textmain">Git</span>
+                    </div>
+                </div>
+                <div class="bg-termbg border border-bordercol p-4 rounded space-y-2">
+                    <div class="text-amber font-bold" id="camps-title">// CERTIFICATIONS_&_CAMPS</div>
+                    <div id="camps-text" class="text-textmuted leading-relaxed space-y-1">
+                        <div>• <strong>Bolu İzzet Baysal Üniversitesi Linux Derneği Yaz Kampı</strong> (2025)</div>
+                        <div>• <strong>Afyon Kocatepe Üniversitesi Linux Derneği Kış Kampı</strong> (2026)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Komut Satırı Alt Bilgi / İletişim -->
+            <div class="pt-4 border-t border-bordercol flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+                <div class="flex items-center space-x-2 text-textmuted">
+                    <span class="prompt-user">emin@mek-node:~#</span>
+                    <span id="cmd-contact">contact --ready</span>
+                    <span class="w-2 h-4 bg-amber blink inline-block"></span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="mailto:muhammeteminkoc5561@gmail.com" class="text-amber hover:underline" id="footer-email">[email]</a>
+                    <a href="https://www.linkedin.com/in/muhammet-emin-ko%C3%A7-abb657288/" target="_blank" rel="noopener noreferrer" class="text-amber hover:underline">[linkedin]</a>
+                    <a href="https://github.com/muhammeteminkoc5561-code" target="_blank" rel="noopener noreferrer" class="text-amber hover:underline">[github]</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Dil Değiştirme ve Otomatik Tarayıcı Dili Algılama Scripti -->
+    <script>
+        // Tarayıcı dilini kontrol et (varsayılan TR, İngilizce ise EN başlat)
+        function getInitialLang() {
+            const saved = localStorage.getItem('mek_lang');
+            if (saved) return saved;
+            const navLang = navigator.language || navigator.userLanguage;
+            return navLang && navLang.startsWith('en') ? 'en' : 'tr';
+        }
+
+        let currentLang = getInitialLang();
+
+        const translations = {
+            tr: {
+                pageTitle: "Muhammet Emin Koç — DevOps & Altyapı Stajyer Adayı",
+                statusBadge: "● ALTYAPI & DEVOPS STAJYER ADAYI",
+                langIndicator: "EN",
+                uptimeText: "Akdeniz Üniversitesi YBS | Staj Dönemi: Dönem İçi / Zorunlu (Hafta İçi Uygun)",
+                heroSubtitle: "// Yönetim Bilişim Sistemleri Öğrencisi & DevOps / Altyapı Stajyer Adayı",
+                btnEmail: "[E-posta Gönder]",
+                heroDesc: "Antalya'da ikamet eden; İstanbul ve Antalya başta olmak üzere farklı şehirlerdeki dönem içi/zorunlu staj fırsatlarını değerlendiren YBS öğrencisiyim. Linux, konteyner teknolojileri (Docker/Kubernetes) ve CI/CD otomasyon süreçlerinde pratik projelere sahibim.",
+                locationBadge: "ANTALYA / İSTANBUL (FARKLI ŞEHİRLERE UYGUN)",
+                cmdAbout: "cat /etc/motd",
+                aboutText: "Altyapı ve DevOps alanında kariyer hedefliyorum. IT Laboratuvar Operasyon Destek Görevlisi olarak fakülte altyapısının sürekliliğini yönetirken; Linux Derneği kampları (Yaz/Kış) ve Oracle Cloud üzerinde kurduğum otomasyon projeleriyle teknik becerilerimi pekiştirdim. AkdeMIS Başkan Yardımcılığı ile operasyonel ve yönetsel yetkinlik kazandım.",
+                cmdExp: "history --work-experience",
+                exp1Title: "IT Laboratuvar Operasyon Destek Görevlisi",
+                exp1Desc: "Fakülte laboratuvar altyapısı, ağ optimizasyonu, donanım/yazılım yapılandırmaları ve kesintisiz teknik destek yönetimi.",
+                exp2Title: "Başkan Yardımcısı & Kurumsal İletişim Koordinatörü (Eski)",
+                exp2Desc: "Teknoyön Zirvesi koordinasyonu, stratejik paydaş ilişkileri ve kurumsal ortaklık yönetimi.",
+                cmdProj: "git status --projects",
+                proj1Desc: "Oracle Cloud altyapısında Nginx için GitHub Actions ve Docker ile otonom CI/CD dağıtım hattı (~4 dk → ~30 sn deploy süresi).",
+                proj2Desc: "Deployment, Service, Ingress ve ConfigMap bileşenleriyle Kubernetes mikroservis yönetimi ve yük dengeleme.",
+                projLink: "[görüntüle]",
+                stackTitle: "// CORE_STACK",
+                campsTitle: "// CERTIFICATIONS_&_CAMPS",
+                campsText: "<div>• <strong>Bolu İzzet Baysal Üniversitesi Linux Derneği Yaz Kampı</strong> (2025)</div><div>• <strong>Afyon Kocatepe Üniversitesi Linux Derneği Kış Kampı</strong> (2026)</div>",
+                cmdContact: "contact --ready"
+            },
+            en: {
+                pageTitle: "Muhammet Emin Koç — DevOps & Infrastructure Intern Candidate",
+                statusBadge: "● INFRA & DEVOPS INTERN CANDIDATE",
+                langIndicator: "TR",
+                uptimeText: "Akdeniz University MIS | Internship Term: Term-time / Mandatory (Weekdays Available)",
+                heroSubtitle: "// Management Information Systems Student & DevOps / Infra Intern Candidate",
+                btnEmail: "[Send Email]",
+                heroDesc: "I am an MIS student based in Antalya, open to term-time/mandatory internship opportunities in Istanbul, Antalya, and other cities. Passionate about Linux, container technologies (Docker/Kubernetes), and CI/CD automation pipelines.",
+                locationBadge: "ANTALYA / ISTANBUL (OPEN TO OTHER CITIES)",
+                cmdAbout: "cat /etc/motd",
+                aboutText: "I am aiming for a career in Infrastructure and DevOps. While managing faculty infrastructure continuity as an IT Lab Operations Support Officer, I enhanced my technical skills through Linux Association Camps (Summer/Winter) and automated projects built on Oracle Cloud. Gained operational and managerial competence through AkdeMIS Vice Presidency.",
+                cmdExp: "history --work-experience",
+                exp1Title: "IT Laboratory Operations Support Officer",
+                exp1Desc: "Management of faculty laboratory infrastructure, network optimization, hardware/software configurations, and uninterrupted technical support.",
+                exp2Title: "Vice President & Corporate Communications Coordinator (Former)",
+                exp2Desc: "Teknoyön Summit coordination, strategic stakeholder relations, and corporate partnership management.",
+                cmdProj: "git status --projects",
+                proj1Desc: "Autonomous CI/CD deployment pipeline using GitHub Actions and Docker for Nginx on Oracle Cloud infrastructure (~4 min → ~30 sec deployment time).",
+                proj2Desc: "Kubernetes microservices management with Deployment, Service, Ingress, and ConfigMap components for load balancing.",
+                projLink: "[view]",
+                stackTitle: "// CORE_STACK",
+                campsTitle: "// CERTIFICATIONS_&_CAMPS",
+                campsText: "<div>• <strong>Bolu Abant İzzet Baysal University Linux Association Summer Camp</strong> (2025)</div><div>• <strong>Afyon Kocatepe University Linux Association Winter Camp</strong> (2026)</div>",
+                cmdContact: "contact --ready"
+            }
+        };
+
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang;
+            localStorage.setItem('mek_lang', lang);
+            const t = translations[lang];
+
+            document.getElementById('page-title').innerText = t.pageTitle;
+            document.getElementById('status-badge').innerText = t.statusBadge;
+            document.getElementById('lang-indicator').innerText = t.langIndicator;
+            document.getElementById('uptime-text').innerText = t.uptimeText;
+            document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
+            document.getElementById('btn-email').innerText = t.btnEmail;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('location-badge').innerText = t.locationBadge;
+            document.getElementById('cmd-about').innerText = t.cmdAbout;
+            document.getElementById('about-text').innerText = t.aboutText;
+            document.getElementById('cmd-exp').innerText = t.cmdExp;
+            document.getElementById('exp-1-title').innerText = t.exp1Title;
+            document.getElementById('exp-1-desc').innerText = t.exp1Desc;
+            document.getElementById('exp-2-title').innerText = t.exp2Title;
+            document.getElementById('exp-2-desc').innerText = t.exp2Desc;
+            document.getElementById('cmd-proj').innerText = t.cmdProj;
+            document.getElementById('proj-1-desc').innerText = t.proj1Desc;
+            document.getElementById('proj-2-desc').innerText = t.proj2Desc;
+            document.getElementById('stack-title').innerText = t.stackTitle;
+            document.getElementById('camps-title').innerText = t.campsTitle;
+            document.getElementById('camps-text').innerHTML = t.campsText;
+            document.getElementById('cmd-contact').innerText = t.cmdContact;
+
+            document.querySelectorAll('.proj-link-text').forEach(el => {
+                el.innerText = t.projLink;
+            });
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            applyLanguage(currentLang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            applyLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
